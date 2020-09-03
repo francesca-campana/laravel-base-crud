@@ -16,7 +16,7 @@ class MovieController extends Controller
     {
       $movies = Movie::all();
 
-      return view('movies', compact('movies'));
+      return view('movies.index', compact('movies'));
     }
 
     /**
@@ -26,7 +26,7 @@ class MovieController extends Controller
      */
     public function create()
     {
-        //
+        return view('movies.create');
     }
 
     /**
@@ -37,7 +37,22 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+          'title' => 'required|max:255',
+          'year' => 'required|integer|min:1895|max:2020',
+          'description' => 'required|max:255'
+        ]);
+
+        $data_request = $request-> all();
+        //dd($data_request);
+
+        $new_movie = new Movie();
+        $new_movie->title= $request['title'];
+        $new_movie->year= $request['year'];
+        $new_movie->description= $request['description'];
+        $new_movie->rating= $request['rating'];
+        $saved= $new_movie->save();
+        dd($saved);
     }
 
     /**
@@ -48,7 +63,7 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        return view('show', compact('movie'));
+        return view('movies.show', compact('movie'));
     }
 
     /**
