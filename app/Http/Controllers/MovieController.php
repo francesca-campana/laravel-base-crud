@@ -37,12 +37,7 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-          'title' => 'required|max:255',
-          'year' => 'required|integer|min:1895|max:2020',
-          'description' => 'required|max:255',
-          'rating' => 'required|integer|min:1|max:10',
-        ]);
+          $request->validate($this->getValidationData());
 
         $data_request = $request-> all();
         //dd($data_request);
@@ -59,7 +54,7 @@ class MovieController extends Controller
         $saved= $new_movie->save();
         if ($saved) {
           $saved_movie = Movie::orderBy('id', 'desc')->first();
-          return redirect()->route('movies.index', $saved_movie);
+          return redirect()->route('movies.show', $saved_movie);
         }
 
         dd($saved);
@@ -82,9 +77,9 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Movie $movie)
     {
-        //
+        return view('movies.edit', compact('movie'));
     }
 
     /**
@@ -94,9 +89,14 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Movie $movie)
     {
-        //
+        $request->validate($this->getValidationData());
+
+        $data = $request->all();
+        $movie->update($data);
+        return redirect()->route('movies.show', $movie);
+        // return view('movies.index')
     }
 
     /**
@@ -108,5 +108,14 @@ class MovieController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getValidationData(){
+      return [
+        'title' => 'required|max:255',
+        'year' => 'required|integer|min:1895|max:2020',
+        'description' => 'required|max:255',
+        'rating' => 'required|integer|min:1|max:10',
+      ];
     }
 }

@@ -33,7 +33,7 @@
 
   <div>
     <label>Rating</label>
-    <input type="text" name="rating"></input>
+    <input type="text" name="rating" value="{{ old('rating') }}"></input>
   </div>
 
   <div>
@@ -41,3 +41,4 @@
   </div>
 
 </form>
+<a href="{{ route('movies.index')}}">torna alla lista</a>
