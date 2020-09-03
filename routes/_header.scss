@@ -1,0 +1,14 @@
+header {
+  height: 90px;
+  background-color: #f3f3f3;
+  padding: 20px 10px;
+  color: $primary_color;
+  border-bottom: 1px solid $primary_color;
+  nav .navigation {
+    list-style-type: none;
+    padding-top: 10px;
+    a {
+      color: $primary_color;
+    }
+  }
+}
