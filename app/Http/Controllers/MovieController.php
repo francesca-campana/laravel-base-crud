@@ -40,18 +40,28 @@ class MovieController extends Controller
         $request->validate([
           'title' => 'required|max:255',
           'year' => 'required|integer|min:1895|max:2020',
-          'description' => 'required|max:255'
+          'description' => 'required|max:255',
+          'rating' => 'required|integer|min:1|max:10',
         ]);
 
         $data_request = $request-> all();
         //dd($data_request);
 
         $new_movie = new Movie();
-        $new_movie->title= $request['title'];
-        $new_movie->year= $request['year'];
-        $new_movie->description= $request['description'];
-        $new_movie->rating= $request['rating'];
+        // $new_movie->title= $request['title'];
+        // $new_movie->year= $request['year'];
+        // $new_movie->description= $request['description'];
+        // $new_movie->rating= $request['rating'];
+
+        //oppure possiamo far fare il lavoro a laravel:
+        $new_movie->fill($data_request);
+
         $saved= $new_movie->save();
+        if ($saved) {
+          $saved_movie = Movie::orderBy('id', 'desc')->first();
+          return redirect()->route('movies.index', $saved_movie);
+        }
+
         dd($saved);
     }
 
