@@ -20,22 +20,22 @@
 
     <div>
       <label>Title</label>
-      <input type="text" name="title" value="{{ $movie->title }}"></input>
+      <input type="text" name="title" value="{{ old('title') ?  old('title') : $movie->title }}"></input>
     </div>
 
     <div>
       <label>Year</label>
-      <input type="text" name="year" value="{{ $movie->year }}"></input>
+      <input type="text" name="year" value="{{ old('year') ?  old('year') : $movie->year }}"></input>
     </div>
 
     <div>
       <label>Description</label>
-      <textarea type="text" name="description" rows="8" cols="80">{{ $movie->description }}</textarea>
+      <textarea type="text" name="description" rows="8" cols="80">{{ old('description') ?  old('description') : $movie->description }}</textarea>
     </div>
 
     <div>
       <label>Rating</label>
-      <input type="text" name="rating" value="{{ $movie->rating }}"></input>
+      <input type="text" name="rating" value="{{ old('rating') ?  old('rating') : $movie->rating }}"></input>
     </div>
 
     <div>
