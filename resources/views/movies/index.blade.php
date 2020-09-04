@@ -1,3 +1,5 @@
+@extends ('layouts.app')
+@section('main_content')
 <div>
   <h1>Movies list</h1>
   <ul>
@@ -24,3 +26,4 @@
   </ul>
 
 </div>
+@endsection

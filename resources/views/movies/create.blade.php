@@ -1,3 +1,6 @@
+@extends ('layouts.app')
+@section('main_content')
+
 <h1>Add new movie</h1>
 <div>
   @if ($errors->any())
@@ -42,3 +45,4 @@
 
 </form>
 <a href="{{ route('movies.index')}}">torna alla lista</a>
+@endsection

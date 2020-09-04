@@ -1,3 +1,6 @@
+@extends ('layouts.app')
+@section('main_content')
+
 <h1>{{$movie->title}}</h1>
 
 <h3>Titolo: {{$movie->title}}</h3>
@@ -15,3 +18,4 @@
     <a href="{{ route('movies.index')}}">torna alla lista</a>
   </li>
 </ul>
+@endsection

@@ -1,3 +1,6 @@
+@extends ('layouts.app')
+@section('main_content')
+
 <h1>Modifica movie: {{ $movie->title }}</h1>
 
 <div>
@@ -44,3 +47,4 @@
   </form>
 
 </div>
+@endsection
