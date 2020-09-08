@@ -17,7 +17,7 @@
 </div>
 
 <div>
-  <form action="{{ route('movies.update', $movie->id) }}" method="post">
+  <form action="{{ route('movies.update', $movie) }}" method="post">
     @csrf
     @method('PUT')
 

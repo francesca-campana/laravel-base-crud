@@ -12,7 +12,7 @@
 </p>
 <ul>
   <li>
-    <a href="{{ route('movies.edit', $movie->id) }}">Modifica</a>
+    <a href="{{ route('movies.edit', $movie) }}">Modifica</a>
   </li>
   <li>
     <a href="{{ route('movies.index')}}">torna alla lista</a>
